@@ -22,21 +22,17 @@ sudo systemctl enable zabbix-server apache2
 ### Задание 2
 
 
-stages:
-  - test
-  - build
-
-test:
-  stage: test
-  image: golang:1.17
-  script: 
-   - go test .
-
-build:
-  stage: build
-  image: docker:latest
-  script:
-   - docker build .
+sudo apt update
+sudo apt install postgresql
+wget https://repo.zabbix.com/zabbix/6.0/debian/pool/main/z/zabbix-release/zabbix-release_6.0-4+debian11_all.deb
+sudo dpkg -i zabbix-release_6.0-4+debian11_all.deb
+sudo apt update
+sudo apt install zabbix-server-pgsql zabbix-frontend-php php7.4-pgsql zabbix-apache-conf zabbix-sql-scripts
+sudo -u postgres createuser --pwprompt zabbix
+sudo -u postgres createdb -O zabbix zabbix
+sudo zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | sudo -u zabbix psql zabbix
+sudo systemctl restart zabbix-server apache2
+sudo systemctl enable zabbix-server apache2
 
 
 ![Название скриншота 2](https://github.com/SogonovAN/gitlab-hw/blob/main/2.1.JPG)`
