@@ -10,7 +10,7 @@
 ....
 ```
 
-![alt text](https://github.com/username/reponame/blob/branch/path/image.png)
+![Название скриншота 2]([https://github.com/SogonovAN/Zabbix-hw/blob/main/1.JPG)])
 
 ---
 
