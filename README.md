@@ -10,8 +10,7 @@
 ....
 ```
 
-
-![Название скриншота 1](https://github.com/SogonovAN/Zabbix-hw/blob/main/img/img15.png)
+![alt text](https://github.com/username/reponame/blob/branch/path/image.png)
 
 ---
 
