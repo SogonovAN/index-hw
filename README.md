@@ -36,7 +36,7 @@
 ```
 
 `При необходимости прикрепитe сюда скриншоты
-![Название скриншота 2]'(https://github.com/SogonovAN/Zabbix-hw/blob/main/1.JPG)`
+![Название скриншота 2](https://github.com/SogonovAN/Zabbix-hw/blob/main/1.JPG)
 
 
 ---
