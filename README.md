@@ -9,9 +9,9 @@
 ....
 ....
 ```
-![Название скриншота 1](https://github.com/SogonovAN/gitlab-hw/blob/main/1.JPG)`
 
 
+![Название скриншота 1][(htthttps://github.com/SogonovAN/Zabbix-hw/blob/main/1.JPG)]
 
 ---
 
