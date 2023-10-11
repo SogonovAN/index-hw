@@ -8,15 +8,16 @@
 
 ---
 
-### Задание 2
+### Задание 2-3
 
 
-![Название скриншота 2](https://github.com/SogonovAN/Zabbix-hw/blob/main/2.JPG)`
+![Название скриншота 2](https://github.com/SogonovAN/zabbix2-hw/blob/main/2-3.JPG)`
 
-![Название скриншота 3](https://github.com/SogonovAN/Zabbix-hw/blob/main/2.1.JPG)`
 
-![Название скриншота 3](https://github.com/SogonovAN/Zabbix-hw/blob/main/2.1.1.JPG)`
+---
 
-![Название скриншота 3](https://github.com/SogonovAN/Zabbix-hw/blob/main/2.2.JPG)`
+### Задание 4
 
+
+![Название скриншота 2](https://github.com/SogonovAN/zabbix2-hw/blob/main/4.JPG)`
 
