@@ -29,7 +29,7 @@
 ### Задание 4
 
 
-![Название скриншота 2](https://github.com/SogonovAN/prometheus-hw/blob/main/4.JPG)`
+![Название скриншота 2](https://github.com/SogonovAN/prometheus-hw/blob/main/4.1.JPG)`
 
 
 ---
