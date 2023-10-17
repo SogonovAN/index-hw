@@ -23,7 +23,7 @@
 
 ![Название скриншота 2](https://github.com/SogonovAN/prometheus2-hw/blob/main/3.JPG)`
 
-![Название скриншота 2](https://github.com/SogonovAN/prometheus2-hw/blob/main/3.JPG)`
+![Название скриншота 2](https://github.com/SogonovAN/prometheus2-hw/blob/main/3.1.JPG)`
 
 
 ---
