@@ -10,7 +10,7 @@
 
 ### Задание 2
 
-'''
+```
 #!/bin/bash
 
 echo "" > /dev/tcp/192.168.111.5/80 && echo "0" || echo "Closed"
@@ -21,9 +21,9 @@ else
 echo "1"
 fi
 
-'''
+```
 
-'''
+```
 vrrp_track_process check_nginx {
        process "nginx"
 }
@@ -55,7 +55,7 @@ vrrp_instance VI_1 {
 
 }
 
-'''
+```
 
 ![Название скриншота 2](https://github.com/SogonovAN/keepalived-hw/blob/main/2.JPG)`
 
