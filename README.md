@@ -3,7 +3,7 @@
 ### Задание 1
 
 
-![Название скриншота 1](https://github.com/SogonovAN/keepalived-hw/blob/main/1.JPG)`
+![Название скриншота 1](https://github.com/SogonovAN/klaster-balance-hw/blob/main/1.JPG)`
 
 ```
 global
@@ -132,7 +132,7 @@ backend web_servers    # секция бэкенд
 ```
 
 
-![Название скриншота 2](https://github.com/SogonovAN/keepalived-hw/blob/main/2.JPG)`
+![Название скриншота 2](https://github.com/SogonovAN/klaster-balance-hw/blob/main/2.JPG)`
 
 
 
