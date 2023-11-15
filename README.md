@@ -1,112 +1,57 @@
-# Домашнее задание к занятию "Отказоустойчивость в облаке - `Согонов Алексей`"
+# Домашнее задание к занятию "Базы данных, их типы - `Согонов Алексей`"
 
 ### Задание 1
 
 ```
-terraform {
-  required_providers {
-    yandex = {
-      source = "yandex-cloud/yandex"
-    }
-  }
-  required_version = ">= 0.13"
-}
-variable "yandex_cloud_token" {
-  type = string
-  description = ""
-}
-provider "yandex" {
-  token     = var.yandex_cloud_token #секретные данные должны быть в сохранности!! Никогда не выкладывайте токен в публичный доступ.
-  cloud_id  = "b1g9aq9ld62tle4e2foh"
-  folder_id = "b1gcq8e922b176vv64p4"
-  zone = "ru-central1-b"
-}
+1.1 Реляционные т.к. в СУБД данные хранятся в виде таблиц, что означает чёткую структуру данных, также данная СУБД обеспечивает целостность данных.
+1.2 Реляционная база данных, т.к. хранит информацию в виде двумерных таблиц, состоящих из столбцов и строк. В таких таблицах есть одно или несколько полей, которые являются уникальными идентификаторами каждой записи — первичным ключом. Этот ключ помогает установить связь между различными таблицами. В CRM его обычно присваивают каждому клиенту или группам целевой аудитории.
+1.3 объектно-ориентированные БД это:
+  1.возможность разбить систему на совокупность независимых сущностей - объектов и провести их строгую независимую спецификацию;
+  2.простота эволюции системы за счет использования таких элементов объектного подхода, как наследование и полиморфизм;
+  3.возможность объектного моделирования системы, позволяющее проследить поведение реальных сущностей предметной области уже на ранних стадиях разработки/
+  4.поддержка сложных типов данных.
+1.4 Графовые базы данных . Они достаточно гибкие, с логичной структурой. Узлы служат для хранения сущностей данных, а рёбра — для хранения взаимосвязей между сущностями, которыми можно управлять.
 
-resource "yandex_compute_instance" "vm-1" {
-
-  count = 2
-  name                      = "linux-vm-${count.index + 1}"
-  allow_stopping_for_update = true
-  platform_id               = "standard-v3"
-  zone                      = "ru-central1-b"
-
-  resources {
-    cores  = "2"
-    memory = "2"
-  }
-
-  boot_disk {
-    initialize_params {
-      image_id = "fd8nru7hnggqhs9mkqps"
-    }
-  }
-
-  network_interface {
-    subnet_id = "${yandex_vpc_subnet.subnet-1.id}"
-    nat       = true
-  }
-
-  metadata = {
-    serial-port-enable = 1
-    ssh-keys = ""
-    user-data = "${file("./meta.txt")}"
-  }
-}
-
-resource "yandex_vpc_network" "network-1" {
-  name = "network1"
-}
-
-resource "yandex_vpc_subnet" "subnet-1" {
-  name           = "subnet1"
-  zone           = "ru-central1-b"
-  v4_cidr_blocks = ["192.168.10.0/24"]
-  network_id     = "${yandex_vpc_network.network-1.id}"
-}
-
-resource "yandex_lb_target_group" "foo-1" {
-  name      = "group1"
-  target {
-    subnet_id = "${yandex_vpc_subnet.subnet-1.id}"
-    address   = "${yandex_compute_instance.vm-1[0].network_interface.0.ip_address}"
-  }
-  target {
-    subnet_id = "${yandex_vpc_subnet.subnet-1.id}"
-    address   = "${yandex_compute_instance.vm-1[1].network_interface.0.ip_address}"
-  }
-}
-
-resource "yandex_lb_network_load_balancer" "foo-1" {
-  name = "balancer1"
-
-  listener {
-    name = "listener1"
-    port = 80
-    external_address_spec {
-      ip_version = "ipv4"
-    }
-  }
-
-  attached_target_group {
-    target_group_id = "${yandex_lb_target_group.foo-1.id}"
-
-    healthcheck {
-      name = "http"
-      http_options {
-        port = 80
-        path = "/"
-      }
-    }
-  }
-}
 ```
-
-
-![Название скриншота 1](https://github.com/SogonovAN/balancer-cloud-hw/blob/main/11.JPG)`
-
-![Название скриншота 1](https://github.com/SogonovAN/balancer-cloud-hw/blob/main/22.JPG)`
-
-![Название скриншота 1](https://github.com/SogonovAN/balancer-cloud-hw/blob/main/3.JPG)`
 
 ---
 
+### Задание 2
+
+```
+
+1.Прочесть баланс банковского счета
+2.Уменьшить баланс банковского счета на n сумму
+3.Сохранить новый банковского счета
+4.Прочесть баланс телефона
+5.Увеличить баланс телефона на n сумму
+6.Сохранить новый баланс телефона
+
+```
+
+---
+
+### Задание 3
+
+```
+
+1.SQL-база данных имеет строгую схему данных, которая определяет типы данных и связи между таблицами.
+2.SQL имеет очень мощный язык запросов, что делает его лучшим выбором для сложных запросов, связанных с большим количеством таблиц.
+3.SQL крайне развитая СУБД, что означает наличие большого сообщества вокруг неё, множество примеров и высокую надёжность.
+4.SQL работает с любыми ОС.
+5.SQL являются вертикально масштабируемыми. Это означает, что нагрузка на один сервер может быть увеличена за счет увеличения таких ресурсов, как RAM, CPU или SSD.
+
+```
+
+---
+
+### Задание 4
+
+```
+
+1.Согласованность и целостность данных.
+2.MapReduce она изначально ориентирована на параллельные вычисления в распределенных кластерах. Суть MapReduce состоит в разделении информационного массива на части, параллельной обработки каждой части на отдельном узле и финального объединения всех результатов.
+
+
+```
+---
