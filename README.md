@@ -1,12 +1,16 @@
-# Домашнее задание к занятию "SQL. Часть 1 - `Согонов Алексей`"
+# Домашнее задание к занятию "SQL. Часть 2 - `Согонов Алексей`"
 
 ### Задание 1
 
 ```
 
-select distinct district 
-from address a 
-where district like 'K%a'and district not like '% %';
+select concat(s2.first_name, ' ', s2.last_name) as 'name', c.city, count(c2.store_id) as 'number of users'
+from store s 
+join staff s2 on s2.staff_id = s.manager_staff_id 
+join address a on a.address_id = s.address_id 
+join city c on c.city_id = a.city_id 
+join customer c2 on c2.store_id = s.store_id 
+group by s2.staff_id;
 
 ```
 
@@ -14,9 +18,9 @@ where district like 'K%a'and district not like '% %';
 
 ```
 
-select payment_id, amount, cast(payment_date as DATE) 
-from payment p 
-where amount > 10 and payment_date between '2005-06-15 00:00:01' and '2005-06-18 23:59:59';
+select count(1)
+from film
+where length > (select avg(length) from film);
 
 ```
 
@@ -24,22 +28,13 @@ where amount > 10 and payment_date between '2005-06-15 00:00:01' and '2005-06-18
 
 ```
 
-select *
-from rental r 
-order by rental_date desc
-limit 5;
+select month(payment_date), sum(amount), count(r.rental_id) 
+from payment p
+join rental r on r.rental_id = p.rental_id 
+group by month(payment_date)
+order by sum(amount) desc 
+limit 1;
 
 ```
 
-
-### Задание 4
-
-```
-
-select lower(first_name), lower(last_name), replace(first_name, 'LL', 'PP')
-from customer c 
-where active > 0 and first_name like 'Kelly' or first_name like 'Willie';
-
-
-```
 ---
