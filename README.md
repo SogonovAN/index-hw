@@ -28,10 +28,10 @@ where length > (select avg(length) from film);
 
 ```
 
-select month(payment_date), sum(amount), count(r.rental_id) 
+select date_format(payment_date, '%M-%Y') as 'month', count(r.rental_id) as 'number of rentals'
 from payment p
 join rental r on r.rental_id = p.rental_id 
-group by month(payment_date)
+group by date_format(payment_date, '%M-%Y')
 order by sum(amount) desc 
 limit 1;
 
