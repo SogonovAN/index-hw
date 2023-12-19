@@ -1,16 +1,12 @@
-# Домашнее задание к занятию "SQL. Часть 2 - `Согонов Алексей`"
+# Домашнее задание к занятию "Индексы - `Согонов Алексей`"
 
 ### Задание 1
 
 ```
 
-select concat(s2.first_name, ' ', s2.last_name) as 'name', c.city, count(c2.store_id) as 'number of users'
-from store s 
-join staff s2 on s2.staff_id = s.manager_staff_id 
-join address a on a.address_id = s.address_id 
-join city c on c.city_id = a.city_id 
-join customer c2 on c2.store_id = s.store_id 
-group by s2.staff_id;
+SELECT  sum(index_length) / sum(data_length) * 100 'процентное отношение'
+FROM INFORMATION_SCHEMA.TABLES
+WHERE table_schema = 'sakila';
 
 ```
 
@@ -18,22 +14,21 @@ group by s2.staff_id;
 
 ```
 
-select count(1)
-from film
-where length > (select avg(length) from film);
+Узкие места:
 
-```
+Limit: 200 row(s)  (cost=0..0 rows=0) (actual time=13985..13985 rows=200 loops=1)
+Table scan on <temporary>  (cost=2.5..2.5 rows=0) (actual time=13985..13985 rows=200 loops=1)
+Temporary table with deduplication  (cost=0..0 rows=0) (actual time=13985..13985 rows=391 loops=1)
+Single-row index lookup on c using PRIMARY (customer_id=r.customer_id)  (cost=250e-6 rows=1) (actual time=406e-6..440e-6 rows=1 loops=642000)
+-> Single-row covering index lookup on i using PRIMARY (inventory_id=r.inventory_id)  (cost=250e-6 rows=1) (actual time=279e-6..315e-6 rows=1 loops=642000)
 
-### Задание 3
+Оптимизация:
 
-```
+create index lang_year on payment(payment_date);
 
-select date_format(payment_date, '%M-%Y') as 'month', count(r.rental_id) as 'number of rentals'
-from payment p
-join rental r on r.rental_id = p.rental_id 
-group by date_format(payment_date, '%M-%Y')
-order by sum(amount) desc 
-limit 1;
+select distinct concat(c.last_name, ' ', c.first_name), sum(p.amount) over (partition by c.customer_id)
+from payment p, rental r, customer c, film f
+where date(p.payment_date) = '2005-07-30' and p.payment_date = r.rental_date and r.customer_id = c.customer_id;;
 
 ```
 
