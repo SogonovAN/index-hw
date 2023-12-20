@@ -16,11 +16,9 @@ WHERE table_schema = 'sakila';
 
 Узкие места:
 
-Limit: 200 row(s)  (cost=0..0 rows=0) (actual time=13985..13985 rows=200 loops=1)
-Table scan on <temporary>  (cost=2.5..2.5 rows=0) (actual time=13985..13985 rows=200 loops=1)
-Temporary table with deduplication  (cost=0..0 rows=0) (actual time=13985..13985 rows=391 loops=1)
-Single-row index lookup on c using PRIMARY (customer_id=r.customer_id)  (cost=250e-6 rows=1) (actual time=406e-6..440e-6 rows=1 loops=642000)
--> Single-row covering index lookup on i using PRIMARY (inventory_id=r.inventory_id)  (cost=250e-6 rows=1) (actual time=279e-6..315e-6 rows=1 loops=642000)
+перебираение всех строк таблицы, отсутствие индексов, некорректное присоединение таблиц, которые увеличивает время обработки запроса
+(partition by c.customer_id, f.title)
+ненужные таблицы f.title, film f
 
 Оптимизация:
 
